@@ -16,15 +16,38 @@ public class PrintArr {
 //        printArr(objArr);
 //    }
 
-    public static void print(Object obj) {
+    public static void deepPrint(Object obj) {
         //System.out.println("NAME: " + obj.getClass());
         if(obj.getClass().toString().split(" ")[0].equals("class") && obj.getClass().toString().split(" ")[1].split("")[0].equals("["))
             try {
                 for(Object arr: (Object[])obj)
-                    print(arr);
+                    deepPrint(arr);
             }catch (ClassCastException e){
-                for(int arr: (int[])obj)
-                    print(arr);
+                String type = obj.getClass().toString().split(" ")[1].split("")[1];
+                if(type.equals("B"))
+                    for(byte arr: (byte[])obj)
+                        deepPrint(arr);
+                else if(type.equals("S"))
+                    for(short arr: (short[])obj)
+                        deepPrint(arr);
+                else if(type.equals("I"))
+                    for(int arr: (int[])obj)
+                        deepPrint(arr);
+                else if(type.equals("L"))
+                    for(long arr: (long[])obj)
+                        deepPrint(arr);
+                else if(type.equals("F"))
+                    for(float arr: (float[])obj)
+                        deepPrint(arr);
+                else if(type.equals("D"))
+                    for(double arr: (double[])obj)
+                        deepPrint(arr);
+                else if(type.equals("B"))
+                    for(boolean arr: (boolean[])obj)
+                        deepPrint(arr);
+                else if(type.equals("C"))
+                    for(char arr: (char[])obj)
+                        deepPrint(arr);
             }
         else
             System.out.print(obj + " ");
