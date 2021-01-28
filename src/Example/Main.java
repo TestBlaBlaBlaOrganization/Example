@@ -1,17 +1,18 @@
 package Example;
 
+import java.lang.reflect.Array;
+
 public class Main {
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4};
-        printArr(arr);
+//        int[] arr = {1,2,3,4};
+//        printArr(arr);
+          int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//        int[][][] matrix = {
+//                {{1, 2}, {3, 4}},
+//                {{5, 6}, {7, 8}},
+//        };
+        PrintArr.printArr(matrix);
     }
-    public static void printArr(Object[] arr){
-        for(Object obj: arr)
-            System.out.print(obj + " ");
-    }
-//    public static void printArr(int[] arr){
-//        for(int obj: arr)
-//            System.out.print(obj + " ");
-//    }
+    // Можно попробовать шаблоны
 }
