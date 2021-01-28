@@ -1,44 +1,69 @@
 package Example;
 
 public class PrintArr {
-    public static void deepPrint(Object obj){
-        deepPrint(obj, 0);
+    public static void deepPrint(Object obj) {
+        deepPrint(obj, 0, false);
     }
-    private static void deepPrint(Object obj, int recursionLevel) {
-        if(obj.getClass().toString().split(" ")[0].equals("class") && obj.getClass().toString().split(" ")[1].split("")[0].equals("["))
+
+    private static void deepPrint(Object obj, int recursionLevel, boolean isLast) {
+
+        if (obj.getClass().toString().split(" ")[0].equals("class") && obj.getClass().toString().split(" ")[1].split("")[0].equals("["))
             try {
-                for(Object arr: (Object[])obj)
-                    deepPrint(arr, recursionLevel + 1);
+                if (recursionLevel > 0)
+                    System.out.println();
+                for (int i = 0; i < recursionLevel; i++)
+                    System.out.print("  ");
+                System.out.print("[");
+
+                Object[] arr = (Object[]) obj;
+                for (int i = 0; i < arr.length; i++)
+                    deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+
+
                 System.out.println();
-            }catch (ClassCastException e){
+                for (int i = 0; i < recursionLevel; i++)
+                    System.out.print("  ");
+                System.out.print("]" + ((!isLast && recursionLevel > 0) ? "," : ""));
+
+            } catch (ClassCastException e) {
                 String type = obj.getClass().toString().split(" ")[1].split("")[1];
-                if(type.equals("B"))
-                    for(byte arr: (byte[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("S"))
-                    for(short arr: (short[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("I"))
-                    for(int arr: (int[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("L"))
-                    for(long arr: (long[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("F"))
-                    for(float arr: (float[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("D"))
-                    for(double arr: (double[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("B"))
-                    for(boolean arr: (boolean[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                else if(type.equals("C"))
-                    for(char arr: (char[])obj)
-                        deepPrint(arr, recursionLevel + 1);
-                System.out.println();
+                if (type.equals("B")) {
+                    byte[] arr = (byte[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("S")) {
+                    short[] arr = (short[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("I")) {
+                    int[] arr = (int[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("L")) {
+                    long[] arr = (long[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("F")) {
+                    float[] arr = (float[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("D")) {
+                    double[] arr = (double[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("B")) {
+                    boolean[] arr = (boolean[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                } else if (type.equals("C")) {
+                    char[] arr = (char[]) obj;
+                    for (int i = 0; i < arr.length; i++)
+                        deepPrint(arr[i], recursionLevel + 1, i == arr.length - 1);
+                }
+                System.out.print("]" + ((!isLast && recursionLevel > 0) ? "," : ""));
             }
         else
-            System.out.print(obj + ", ");
+            System.out.print(obj + ((!isLast && recursionLevel > 0) ? ", " : ""));
+
     }
 }
